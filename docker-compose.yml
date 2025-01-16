@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./server
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - ./server:/usr/src/app
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=Dream_Nest
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
