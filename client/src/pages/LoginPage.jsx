@@ -1,8 +1,9 @@
+import { Email,  Lock } from "@mui/icons-material";
 import React, { useState } from "react";
-import "../styles/Login.scss"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setLogin } from "../redux/state";
-import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import "../styles/Login.scss";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const LoginPage = () => {
     e.preventDefault()
 
     try {
-      const response = await fetch ("http://localhost:3001/auth/login", {
+      const response = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -28,7 +29,7 @@ const LoginPage = () => {
       const loggedIn = await response.json()
 
       if (loggedIn) {
-        dispatch (
+        dispatch(
           setLogin({
             user: loggedIn.user,
             token: loggedIn.token
@@ -43,28 +44,51 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="login">
-      <div className="login_content">
-        <form className="login_content_form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">LOG IN</button>
-        </form>
-        <a href="/register">Don't have an account? Sign In Here</a>
+
+    <div className="login1">
+      <div className='login'>
+        <div className="login_image">
+
+        </div>
+        <div className="login_content">
+
+
+          <form className="login_content_form" onSubmit={handleSubmit}>
+            <h1>Welcome</h1>
+            <h4>Login your email</h4>
+            <div className="input-container">
+              < Email className="icon" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div >
+
+            <div className="input-container">
+            < Lock className="icon" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                class="border-text"
+              />
+            </div>
+            <h4>&nbsp; &nbsp; Forgot passowrd ! </h4>
+            <button type="submit">
+              LOGIN
+            </button>
+
+          </form>
+          <a href="/register">Don't have an account? Sign In Here</a>
+        </div>
       </div>
     </div>
+
   );
 };
 

@@ -1,22 +1,22 @@
-import "../styles/CreateListing.scss";
 import Navbar from "../components/Navbar";
-import { categories, types, facilities } from "../data";
+import { categories, facilities, types } from "../data";
+import "../styles/CreateListing.scss";
 
-import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
-import variables from "../styles/variables.scss";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { IoIosImages } from "react-icons/io";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import { useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { BiTrash } from "react-icons/bi";
+import { IoIosImages } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
+import variables from "../styles/variables.scss";
 
 const CreateListing = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
 
-  /* LOCATION */
+
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
     aptSuite: "",
@@ -33,13 +33,13 @@ const CreateListing = () => {
     });
   };
 
-  /* BASIC COUNTS */
+
   const [guestCount, setGuestCount] = useState(1);
   const [bedroomCount, setBedroomCount] = useState(1);
   const [bedCount, setBedCount] = useState(1);
   const [bathroomCount, setBathroomCount] = useState(1);
 
-  /* AMENITIES */
+
   const [amenities, setAmenities] = useState([]);
 
   const handleSelectAmenities = (facility) => {
@@ -52,7 +52,7 @@ const CreateListing = () => {
     }
   };
 
-  /* UPLOAD, DRAG & DROP, REMOVE PHOTOS */
+
   const [photos, setPhotos] = useState([]);
 
   const handleUploadPhotos = (e) => {
@@ -76,7 +76,7 @@ const CreateListing = () => {
     );
   };
 
-  /* DESCRIPTION */
+
   const [formDescription, setFormDescription] = useState({
     title: "",
     description: "",
@@ -101,7 +101,7 @@ const CreateListing = () => {
     e.preventDefault();
 
     try {
-      /* Create a new FormData onject to handle file uploads */
+
       const listingForm = new FormData();
       listingForm.append("creator", creatorId);
       listingForm.append("category", category);
@@ -122,12 +122,12 @@ const CreateListing = () => {
       listingForm.append("highlightDesc", formDescription.highlightDesc);
       listingForm.append("price", formDescription.price);
 
-      /* Append each selected photos to the FormData object */
+
       photos.forEach((photo) => {
         listingForm.append("listingPhotos", photo);
       });
 
-      /* Send a POST request to server */
+
       const response = await fetch("http://localhost:3001/properties/create", {
         method: "POST",
         body: listingForm,

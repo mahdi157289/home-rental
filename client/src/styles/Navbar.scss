@@ -1,6 +1,11 @@
 @import "./variables.scss";
 @import "./breakpoints.scss";
 
+
+.logout-link:hover {
+  color: red;
+}
+
 .navbar {
   padding: 10px 60px;
   display: flex;
@@ -100,6 +105,12 @@
         right: 20px;
       }
 
+      .logout-link {
+        &:hover {
+          color: red; // Override hover color for logout-link
+        }
+      }
+
       a {
         width: 100%;
         padding: 8px 15px;
@@ -113,5 +124,6 @@
         }
       }
     }
+
   }
 }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "../styles/List.scss";
+import { useDispatch, useSelector } from "react-redux";
+import Footer from "../components/Footer";
+import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
-import { useDispatch, useSelector } from "react-redux";
 import { setReservationList } from "../redux/state";
-import ListingCard from "../components/ListingCard";
-import Footer from "../components/Footer"
+import "../styles/List.scss";
 
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
@@ -38,11 +38,12 @@ const ReservationList = () => {
   return loading ? (
     <Loader />
   ) : (
-    <>
+    <div className="property-list-container">
       <Navbar />
       <h1 className="title-list">Your Reservation List</h1>
       <div className="list">
-        {reservationList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
+      {reservationList && reservationList.length > 0 ? (
+        reservationList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
           <ListingCard
             listingId={listingId._id}
             creator={hostId._id}
@@ -56,10 +57,12 @@ const ReservationList = () => {
             totalPrice={totalPrice}
             booking={booking}
           />
-        ))}
+        )) ) : (
+          <h1>No Trip List Yet. . </h1>
+        )}
       </div>
       <Footer />
-    </>
+      </div>
   );
 };
 

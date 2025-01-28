@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "../styles/List.scss";
+import { useDispatch, useSelector } from "react-redux";
+import Footer from "../components/Footer";
+import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
-import { useDispatch, useSelector } from "react-redux";
 import { setTripList } from "../redux/state";
-import ListingCard from "../components/ListingCard";
-import Footer from "../components/Footer"
+import "../styles/List.scss";
 
 const TripList = () => {
   const [loading, setLoading] = useState(true);
@@ -38,11 +38,12 @@ const TripList = () => {
   return loading ? (
     <Loader />
   ) : (
-    <>
+    <div className="property-list-container">
       <Navbar />
       <h1 className="title-list">Your Trip List</h1>
       <div className="list">
-        {tripList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
+      {tripList && tripList.length > 0 ? (
+        tripList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
           <ListingCard
             listingId={listingId._id}
             creator={hostId._id}
@@ -56,10 +57,13 @@ const TripList = () => {
             totalPrice={totalPrice}
             booking={booking}
           />
-        ))}
+        ))
+      ) : (
+        <h1>No Trip List Yet. . </h1>
+      )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

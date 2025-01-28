@@ -1,13 +1,13 @@
-import { useState } from "react";
-import "../styles/ListingCard.scss";
 import {
-  ArrowForwardIos,
-  ArrowBackIosNew,
-  Favorite,
+    ArrowBackIosNew,
+    ArrowForwardIos,
+    Favorite,
 } from "@mui/icons-material";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
+import "../styles/ListingCard.scss";
 
 const ListingCard = ({
   listingId,
@@ -24,7 +24,7 @@ const ListingCard = ({
   totalPrice,
   booking,
 }) => {
-  /* SLIDER FOR IMAGES */
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevSlide = () => {
@@ -41,7 +41,7 @@ const ListingCard = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /* ADD TO WISHLIST */
+
   const user = useSelector((state) => state.user);
   const wishList = user?.wishList || [];
 

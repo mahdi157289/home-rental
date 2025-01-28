@@ -1,58 +1,88 @@
 @import "./variables.scss";
 @import "./breakpoints.scss";
+.register_image {
+  background: url("../../public/assets/register.jpg") center;
+  background-size: cover;
 
-.register {
-  width: 100vw;
-  height: 100vh;
+}
+.register0{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background: url("../../public/assets/register.jpg") center;
-  background-size: cover;
+  background: rgb(37,150,190);
+background: radial-gradient(circle, rgba(37,150,190,1) 0%, rgba(89,89,170,0.8995973389355743) 48%, rgba(37,150,190,1) 100%);
+  padding: 50px 50px 50px 50px;
+  width: 100vw;
+  height: 120vh;
+
+
+}
+h1 {
+  font-family: 'Roboto', sans-serif;
+  color: #2596be;
+  font-size: 50px;
+
+}
+.register {
+   display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  /* Add a soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition for effects */
+
+  &:hover {
+    transform: translateY(-10px);
+    /* Slightly lift the container */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+  }
 
   &_content {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 40%;
+    
     padding: 40px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
+    background-color: rgba(248, 243, 243, 0.979);
+    
 
-    @include lg {
-      width: 60%
-    }
-
-    @include mm {
-      width: 80%
-    }
 
     &_form {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
-
+      width: 100%;
       input {
         width: 100%;
         padding: 7px 15px;
         background-color: transparent;
         border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+       
         outline: none;
         text-align: center;
-        color: white;
+        color: rgb(247, 242, 242);
 
         input:not(:placeholder-shown):focus {
           background: transparent; /* or background: none; */
         }
 
         &::placeholder {
-          color: white;
+          color: rgb(100, 97, 97);
         }
       }
-
+      .upload-container img {
+        background: black;
+        
+      }
+      
+      .upload-container p {
+        color: rgb(100, 97, 97);
+      }
       label {
         display: flex;
         flex-direction: column;
@@ -60,7 +90,7 @@
         align-items: center;
         gap: 9px;
         cursor: pointer;
-        color: white;
+        
         font-size: 14px;
 
         img {

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { facilities } from "../data";
+import "../styles/ListingDetails.scss";
 
+import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRange } from "react-date-range";
+import { useSelector } from "react-redux";
+import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
-import { useSelector } from "react-redux";
-import Footer from "../components/Footer"
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ const ListingDetails = () => {
   console.log(listing)
 
 
-  /* BOOKING CALENDAR */
+
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
@@ -51,15 +51,15 @@ const ListingDetails = () => {
   ]);
 
   const handleSelect = (ranges) => {
-    // Update the selected date range when user makes a selection
+
     setDateRange([ranges.selection]);
   };
 
   const start = new Date(dateRange[0].startDate);
   const end = new Date(dateRange[0].endDate);
-  const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24); // Calculate the difference in day unit
+  const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24);
 
-  /* SUBMIT BOOKING */
+
   const customerId = useSelector((state) => state?.user?._id)
 
   const navigate = useNavigate()
@@ -96,7 +96,7 @@ const ListingDetails = () => {
   ) : (
     <>
       <Navbar />
-      
+
       <div className="listing-details">
         <div className="title">
           <h1>{listing.title}</h1>
