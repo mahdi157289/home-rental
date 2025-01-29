@@ -38,7 +38,10 @@ const UserSchema = new mongoose.Schema(
     reservationList: {
       type: Array,
       default: [],
-    }
+    },
+    resetToken: String,
+    resetTokenExpiration: Date,
+
   },
   { timestamps: true }
 )

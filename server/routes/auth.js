@@ -67,6 +67,85 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
   }
 });
 
+// Forgot Password Route
+router.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Generate a reset token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+
+    // Save the token and its expiration time in the user's profile
+    user.resetToken = resetToken;
+    user.resetTokenExpiration = Date.now() + 3600000; // Token expires in 1 hour
+    await user.save();
+
+    // Create the reset URL
+    const resetURL = `http://localhost:3000/reset-password/${resetToken}`;
+
+    // Set up nodemailer to send the email
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.EMAIL_USER, // Your email address
+        pass: process.env.EMAIL_PASS, // Your email password (or app-specific password)
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Password Reset Request",
+      text: `You requested a password reset. Click here to reset your password: ${resetURL}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ success: true, message: "Password reset link sent" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Something went wrong", error: err.message });
+  }
+});
+// In auth.js
+router.post("/reset-password/:token", async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  try {
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired token" });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    user.password = hashedPassword;
+    user.resetToken = undefined; // Clear the reset token
+    user.resetTokenExpiration = undefined; // Clear the expiration time
+
+    await user.save();
+
+    res.status(200).json({ success: true, message: "Password reset successfully!" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went wrong", error: err.message });
+  }
+});
+
+
 /* USER LOGIN*/
 router.post("/login", async (req, res) => {
   try {

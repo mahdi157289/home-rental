@@ -78,7 +78,7 @@ const LoginPage = () => {
                 class="border-text"
               />
             </div>
-            <h4>&nbsp; &nbsp; Forgot passowrd ! </h4>
+            <h4><a href="/forgot-password">Forgot password?</a></h4>
             <button type="submit">
               LOGIN
             </button>
