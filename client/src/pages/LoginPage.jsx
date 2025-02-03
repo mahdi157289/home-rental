@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "../redux/state";
 import "../styles/Login.scss";
+import { colors } from "@mui/material";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -84,7 +85,7 @@ const LoginPage = () => {
             </button>
 
           </form>
-          <a href="/register">Don't have an account? Sign In Here</a>
+          <a href="/register" className="register-link" >Don't have an account? Sign In Here</a>
         </div>
       </div>
     </div>

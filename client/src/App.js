@@ -12,7 +12,7 @@ import SearchPage from "./pages/SearchPage";
 import TripList from "./pages/TripList";
 import WishList from "./pages/WishList";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 function App() {
   return (
     <div>
@@ -21,6 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password/:token" component={ResetPasswordPage} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetails />} />

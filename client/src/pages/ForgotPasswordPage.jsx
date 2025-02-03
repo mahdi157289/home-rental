@@ -38,11 +38,13 @@ const ForgotPasswordPage = () => {
     <div className="forgot-password">
       <div className="forgot-password-content">
         <form onSubmit={handleSubmit}>
-          <h1>Forgot Password</h1>
+          <div className="block">
+          <h1 >Forgot Password</h1>
           <h4>Enter your email to reset your password</h4>
           <div className="input-container">
             <Email className="icon" />
             <input
+            className="input1"
               type="email"
               placeholder="Email"
               value={email}
@@ -50,8 +52,9 @@ const ForgotPasswordPage = () => {
               required
             />
           </div>
-          <button type="submit">Send Reset Link</button>
-        </form>
+          <button type="submit" className="send-link-button" >Send Reset Link</button>
+          </div>
+          </form>
       </div>
     </div>
   );

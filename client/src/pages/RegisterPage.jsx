@@ -182,7 +182,7 @@ const RegisterPage = () => {
             required
           />
           <label htmlFor="image">
-            <img src="/assets/addImage.png" alt="add profile photo" />
+            <img src="/assets/uploadPhoto.png" alt="add profile photo" />
             <p>Upload Your Photo</p>
           </label>
 

@@ -65,14 +65,12 @@ h1 {
        
         outline: none;
         text-align: center;
-        color: rgb(247, 242, 242);
+        color: rgb(43, 35, 35);
 
-        input:not(:placeholder-shown):focus {
-          background: transparent; /* or background: none; */
-        }
+       
 
         &::placeholder {
-          color: rgb(100, 97, 97);
+          color: rgb(74, 74, 74);
         }
       }
       .upload-container img {
@@ -112,7 +110,7 @@ h1 {
 
     a {
       text-decoration: none;
-      color: white;
+      color: rgb(46, 45, 45);
       font-size: 13px;
       margin-top: 10px;
       text-align: center;
@@ -123,3 +121,4 @@ h1 {
     }
   }
 }
+.input-container{box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);}

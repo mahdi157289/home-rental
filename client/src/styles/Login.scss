@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(37,150,190);
-background: radial-gradient(circle, rgba(37,150,190,1) 0%, rgba(89,89,170,0.8995973389355743) 48%, rgba(37,150,190,1) 100%);
+  background: rgb(37, 150, 190);
+  background: radial-gradient(circle, rgba(37, 150, 190, 1) 0%, rgba(89, 89, 170, 0.8995973389355743) 48%, rgba(37, 150, 190, 1) 100%);
   padding: 50px 50px 50px 50px;
   width: 100vw;
   height: 100vh;
@@ -25,7 +25,7 @@ background: radial-gradient(circle, rgba(37,150,190,1) 0%, rgba(89,89,170,0.8995
 .input-container .icon {
   padding: 10px;
   font-size: 50px;
-    text-align: center;
+  text-align: center;
 }
 
 .login_image {
@@ -44,7 +44,10 @@ h1 {
 
 }
 
-h4{font-size: x-small;}
+h4 {
+  font-size: x-small;
+  color: #080808;
+}
 
 .login {
   display: grid;
@@ -72,7 +75,7 @@ h4{font-size: x-small;}
     gap: 15px;
     width: 100%;
     padding-top: 50px;
-    
+
 
 
     @include lg {
@@ -124,9 +127,9 @@ h4{font-size: x-small;}
 
     a {
       text-decoration: none;
-      color: white;
-      font-size: 17px;
-      font-weight: 600;
+      color: rgb(7, 6, 6);
+      font-size: 13px;
+      
       text-align: center;
 
       &:hover {
@@ -141,3 +144,4 @@ h4{font-size: x-small;}
     }
   }
 }
+

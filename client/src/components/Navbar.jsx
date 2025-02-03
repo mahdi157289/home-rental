@@ -18,6 +18,7 @@ const Navbar = () => {
   const propertyList = user?.propertyList;
   const [search, setSearch] = useState("")
   console.log("Navbar propertyList:", propertyList);
+ // Initialize as empty array
 
   const navigate = useNavigate()
 const getPropertyList = async () => {
@@ -32,11 +33,16 @@ const getPropertyList = async () => {
       setLoading(false);
     } catch (err) {
       console.log("Fetch all properties failed", err.message);
+      setLoading(false);
     }
   };
-   useEffect(() => {
+  useEffect(() => {
+    if (user) {
       getPropertyList();
-    }, []);
+    } else {
+      setLoading(false);
+    }
+  }, [user]);
   return loading ? <Loader /> :(
     <div className="navbar">
       <a href="/">
